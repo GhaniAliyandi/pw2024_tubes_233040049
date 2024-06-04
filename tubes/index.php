@@ -6,7 +6,7 @@ $games = query("SELECT * FROM games");
 
 // tombol cari diklik
 if(isset($_POST["cari"]) ) {
-  $games = cari($_POST["keywoard"]);
+  $games = cari($_POST["keyword"]);
 }
 ?>
 
@@ -34,7 +34,7 @@ if(isset($_POST["cari"]) ) {
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             </ul>
             <form action="" method="POST" class="d-flex">
-                <input type="text" name="keywoard" placeholder="Masukkan Pencarian..." autocomplete="off" class="keyword form-control me-2">
+                <input type="text" name="keyword" placeholder="Masukkan Pencarian..." autocomplete="off" class="keyword form-control me-2">
                 <button type="submit" name="cari" class="btn btn-dark" class="tombol-cari">Search</button>
             </form>
 

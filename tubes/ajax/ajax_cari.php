@@ -1,7 +1,7 @@
 
 <?php
-require '../tubes/functions.php';
-$games = cari($_GET['keywoard']);
+require '../functions.php';
+$games = cari($_GET['keyword']);
 ?>
 
 <div class="row">
