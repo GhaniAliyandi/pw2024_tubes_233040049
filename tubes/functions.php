@@ -119,14 +119,23 @@
 }
     
     
-    function cari($keyword) {
-        $query = "SELECT * FROM games WHERE
-            nama_game LIKE '%$keyword%' OR 
-            rilis LIKE '%$keyword%' OR 
-            size LIKE '%$keyword%'
-        "; 
-        return query($query);
+function cari($keywoard)
+{
+    global $conn;
+
+    $query = "SELECT * FROM games
+        WHERE nama_game LIKE '%$keywoard%'";
+
+    $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+
+    $rows = [];
+
+    while ($row = mysqli_fetch_assoc($result)) {
+        $rows[] = $row;
     }
+
+    return $rows;
+}
     
     function login($data) {
         global $conn;

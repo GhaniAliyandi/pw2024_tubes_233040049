@@ -6,7 +6,7 @@ $games = query("SELECT * FROM games");
 
 // tombol cari diklik
 if(isset($_POST["cari"]) ) {
-  $sport = cari($_POST["keyword"]);
+  $games = cari($_POST["keywoard"]);
 }
 ?>
 
@@ -25,7 +25,7 @@ if(isset($_POST["cari"]) ) {
   <body>
     <nav class="navbar navbar-expand-lg " style="background-color:rgb(17,52,66);">
       <div class="container-fluid">
-        <a class="navbar-brand"style="color:white;" href="#">GAMES</a>
+        <a class="navbar-brand"style="color:white;" href="#">ADMIN</a>
         <a href="tambah.php" class="btn btn-outline-light">Tambah Data</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -33,10 +33,11 @@ if(isset($_POST["cari"]) ) {
         <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             </ul>
-            <form action="" method="post" class="d-flex" role="search">
-        <input class="form-control me-2" type="text" name="keyword" autofocus placeholder="Search" autocomplete="off">
-        <button class="btn btn-outline-light" id="tombol-cari" type="submit" name="cari">Search</button>
-      </form>
+            <form action="" method="POST" class="d-flex">
+                <input type="text" name="keywoard" placeholder="Masukkan Pencarian..." autocomplete="off" class="keyword form-control me-2">
+                <button type="submit" name="cari" class="btn btn-dark" class="tombol-cari">Search</button>
+            </form>
+
           </div>
         </div>
       </nav>
@@ -46,6 +47,7 @@ if(isset($_POST["cari"]) ) {
       
       <center>
 <h3 class="text-center mb-4 fw-bold" style="padding-top:100px;">GAMES </h3>
+
 <div class="container" id="container">
 <div class="row">
     <?php foreach ($games as $gm) : ?>
@@ -58,7 +60,7 @@ if(isset($_POST["cari"]) ) {
     <p><?= $gm["rilis"]; ?></p>
     <h5><?= $gm["size"]; ?></h5>
     <br>
-    <a href="edit.php?id=<?= $gm["id"]; ?>" class="badge text-bg-secondary text-decoration-none">Edit</a>
+    <a href="edit.php?id=<?= $gm["id"]; ?>" class="badge text-bg-primary text-decoration-none">Edit</a>
               <a href="delete.php?id=<?= $gm["id"]; ?>" class="badge text-bg-danger text-decoration-none" onclick="return confirm('yakin?');">Delete</a>
   </div>
 </div>
@@ -70,5 +72,5 @@ if(isset($_POST["cari"]) ) {
 </center>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  <script src="script.js"></script>
+  <script src="js/script.js"></script>
 </html>
