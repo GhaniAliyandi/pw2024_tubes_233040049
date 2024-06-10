@@ -63,6 +63,10 @@ if (isset($_POST["edit"])) {
                 <label for="size" class="form-label">size</label>
                 <input type="text" class="form-control" id="size" name="size" value="<?= $gm["size"]; ?>">
             </div>
+            <div class="mb-3">
+                <label for="details" class="form-label">Details</label>
+                <input type="text" class="form-control" id="details" name="details" value="<?= $gm["details"]; ?>">
+            </div>
             <button type="submit" name="edit" class="btn btn-primary">edit</button>
         </form>
 </body>

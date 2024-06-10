@@ -16,8 +16,6 @@ $games = cari($_GET['keyword']);
     <h5><?= $gm["size"]; ?></h5>
     <br>
     <a href="details.php?id=<?= $gm["id"]; ?>" class="badge text-bg-dark text-decoration-none">details</a>
-    <a href="edit.php?id=<?= $gm["id"]; ?>" class="badge text-bg-primary text-decoration-none">Edit</a>
-              <a href="delete.php?id=<?= $gm["id"]; ?>" class="badge text-bg-danger text-decoration-none" onclick="return confirm('yakin?');">Delete</a>
   </div>
 </div>
 </div>

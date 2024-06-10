@@ -47,6 +47,10 @@ if (isset($_POST["submit"])) {
                 <label for="size" class="form-label">Size</label>
                 <input type="text" class="form-control" id="size" name="size" required>
             </div>
+            <div class="mb-3">
+                <label for="details" class="form-label">Details</label>
+                <input type="text" class="form-control" id="details" name="details" required>
+            </div>
 
             <button type="submit" name="submit" class="btn btn-primary">Tambah</button>
         </form>

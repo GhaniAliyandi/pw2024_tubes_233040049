@@ -24,9 +24,10 @@
         $nama_game = htmlspecialchars($data["nama_game"]);
         $rilis = htmlspecialchars($data["rilis"]);
         $size = htmlspecialchars($data["size"]);
+        $details = htmlspecialchars($data["details"]);
     
         $query = "INSERT INTO games VALUES
-                (NULL, '$image', '$nama_game', '$rilis', '$size')
+                (NULL, '$image', '$nama_game', '$rilis', '$size', '$details')
                 ";
         mysqli_query($conn, $query);
         
@@ -96,6 +97,7 @@
     $nama_game = htmlspecialchars($data["nama_game"]);
     $rilis = htmlspecialchars($data["rilis"]);
     $size = htmlspecialchars($data["size"]);
+    $details = htmlspecialchars($data["details"]);
     $gambarLama = htmlspecialchars($data["gambarLama"]);
 
     //cek apakah user pilih gambar baru atau tidak
@@ -110,7 +112,8 @@
           image = '$image',
           nama_game='$nama_game',
           rilis = '$rilis',
-          size = '$size'
+          size = '$size',
+          details = '$details'
           WHERE id=$id
           ";
     mysqli_query($conn, $query);
@@ -137,22 +140,22 @@ function cari($keywoard)
     return $rows;
 }
     
-    function login($data) {
-        global $conn;
+function login($data) {
+    global $conn;
+
+    $username = htmlspecialchars($data["username"]);
+    $password = htmlspecialchars($data["password"]);
     
-        $username = htmlspecialchars($data["username"]);
-        $password = htmlspecialchars($data["password"]);
-        
-        // cek dulu username nya
-        if ($user = query("SELECT * FROM user WHERE username = '$username'")[0]) {
-            if(password_verify($password, $user['password'])) {
-    
-                $_SESSION['login'] = true;
-                header("Location: index.php");
-                exit;
-            }
+    // cek dulu username nya
+    if ($users = query("SELECT * FROM users WHERE username = '$username'")[0]) {
+        if(password_verify($password, $users['password'])) {
+
+            $_SESSION['login'] = true;
+            header("Location: index.php");
+            exit;
         }
-        }
+    }
+    }
     
     
     function registrasi($data)  {
@@ -162,6 +165,7 @@ function cari($keywoard)
         $password1= mysqli_real_escape_string($conn, $data['password1']);
         $password2 = mysqli_real_escape_string($conn, $data['password2']);
     
+    
         if(empty($username) || empty($password1) || empty($password2) ) {
             echo "<script>
                     alert('username /password tidak boleh kosong!')
@@ -170,9 +174,9 @@ function cari($keywoard)
             return false;
         }
     
-        // jika username sudah ada
+        // jika username sudah ad
     
-        if(query("SELECT * FROM user WHERE username = '$username'")) {
+        if(query("SELECT * FROM users WHERE username = '$username'")) {
             echo "<script>
                     alert('username sudah terdaftar')
                     document.location.href = 'registrasi.php'
@@ -199,11 +203,10 @@ function cari($keywoard)
     
         // jika username & password sudah sesuai
         $password_baru = password_hash($password1, PASSWORD_DEFAULT);
-        // insert ke tabel user
-        $query = "INSERT INTO user VALUES
-                (NULL, '$username', '$password_baru')";
+        // insert ke tabel users
+        $query = "INSERT INTO users VALUES
+                (null, '$username', '$password_baru')";
         mysqli_query($conn, $query) or die (mysqli_error($conn));
         return mysqli_affected_rows($conn);
     }
-
-?>
+    ?>

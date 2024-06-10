@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+//(jika tidak ada session login, maka kembalikan user ke halaman login)
+if (!isset($_SESSION["login"])) {
+    header("Location: login.php");
+    exit;
+}
+
 require "functions.php";
 
 $no = 1;
@@ -27,6 +35,7 @@ if(isset($_POST["cari"]) ) {
       <div class="container-fluid">
         <a class="navbar-brand"style="color:white;" href="#">ADMIN</a>
         <a href="tambah.php" class="btn btn-outline-light">Tambah Data</a>
+        <a href="logout.php">logout</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -60,6 +69,7 @@ if(isset($_POST["cari"]) ) {
     <p><?= $gm["rilis"]; ?></p>
     <h5><?= $gm["size"]; ?></h5>
     <br>
+    <a href="details.php?id=<?= $gm["id"]; ?>" class="badge text-bg-dark text-decoration-none">details</a>
     <a href="edit.php?id=<?= $gm["id"]; ?>" class="badge text-bg-primary text-decoration-none">Edit</a>
               <a href="delete.php?id=<?= $gm["id"]; ?>" class="badge text-bg-danger text-decoration-none" onclick="return confirm('yakin?');">Delete</a>
   </div>
